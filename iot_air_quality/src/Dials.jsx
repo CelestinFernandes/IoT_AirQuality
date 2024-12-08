@@ -43,7 +43,7 @@ const Dials = ({ latestData, fallbackPM }) => (
       label="Humidity"
       value={latestData.humidity || "N/A"}
       thresholds={{ good: 30, moderate: 60 }}
-      unit="%"
+      unit=""
     />
     <Dial
       label="MQ135"

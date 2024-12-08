@@ -19,18 +19,28 @@ const DataTable = ({
     const direction = sortedField === field && sortDirection === "asc" ? "desc" : "asc";
     setSortedField(field);
     setSortDirection(direction);
-
+  
     const sortedData = [...dataPoints].sort(([keyA, valueA], [keyB, valueB]) => {
-      const valA = valueA[field] || ""; // Default empty string if the field doesn't exist
-      const valB = valueB[field] || "";
-
+      let valA, valB;
+  
+      // Handle nested fields like pm10 and pm25
+      if (field.includes(".")) {
+        const [parentField, childField] = field.split(".");
+        valA = valueA[parentField]?.[childField] || "";
+        valB = valueB[parentField]?.[childField] || "";
+      } else {
+        valA = field === "timestamp" ? new Date(keyA) : valueA[field] || "";
+        valB = field === "timestamp" ? new Date(keyB) : valueB[field] || "";
+      }
+  
       if (valA < valB) return direction === "asc" ? -1 : 1;
       if (valA > valB) return direction === "asc" ? 1 : -1;
       return 0;
     });
-
+  
     setDataPoints(sortedData); // Update the sorted data in the parent state
   };
+  
 
   const filteredData = dataPoints.filter(([timestamp, entry]) =>
     Object.values(entry).some((value) => value?.toString().toLowerCase().includes(filterText.toLowerCase()))
