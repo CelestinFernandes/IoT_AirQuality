@@ -110,3 +110,36 @@ thead {
   font-size: 1.1rem;
   margin: 0 1rem;
 }
+
+.dial-container {
+  display: flex;
+  justify-content: space-around;
+  flex-wrap: wrap;
+  margin: 2rem 0;
+}
+
+.dial {
+  text-align: center;
+  margin: 1rem;
+}
+
+.dial-circle {
+  width: 100px;
+  height: 100px;
+  border-radius: 50%;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  font-size: 1.2rem;
+  font-weight: bold;
+  color: white;
+}
+
+.dial-value {
+  text-align: center;
+}
+
+.dial-label {
+  margin-top: 0.5rem;
+  font-size: 1rem;
+}
