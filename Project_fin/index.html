@@ -3,77 +3,58 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Air Quality Dashboard</title>
-    <link rel="stylesheet" href="styles.css">
+    <title>IoT Air Monitoring</title>
+    <script type="module" src="./script.js" defer></script>
+    <style>
+        body {
+            font-family: Arial, sans-serif;
+            margin: 20px;
+            line-height: 1.6;
+        }
+        .data-item {
+            margin: 10px 0;
+        }
+        table {
+            width: 100%;
+            border-collapse: collapse;
+            margin-top: 20px;
+        }
+        table, th, td {
+            border: 1px solid black;
+        }
+        th, td {
+            padding: 8px;
+            text-align: left;
+        }
+    </style>
 </head>
 <body>
-    <div class="dashboard">
-        <h1>Air Quality Dashboard</h1>
-        
-        <div class="gauges">
-            <div class="gauge" id="aqi-gauge">
-                <h2>Air Quality Index</h2>
-                <div class="gauge-circle">
-                    <div class="gauge-value">0</div>
-                </div>
-            </div>
-            <div class="gauge" id="temp-gauge">
-                <h2>Temperature</h2>
-                <div class="gauge-circle">
-                    <div class="gauge-value">0°C</div>
-                </div>
-            </div>
-            <div class="gauge" id="humidity-gauge">
-                <h2>Humidity</h2>
-                <div class="gauge-circle">
-                    <div class="gauge-value">0%</div>
-                </div>
-            </div>
-        </div>
+    <h1>IoT Air Monitoring</h1>
+    <div class="data-item" id="airCondition">Air Condition: </div>
+    <div class="data-item" id="airQuality">Air Quality: </div>
+    <div class="data-item" id="heatIndexCondition">Heat Index Condition: </div>
+    <div class="data-item" id="humidity">Humidity: </div>
+    <div class="data-item" id="temperature">Temperature: </div>
+    <div class="data-item" id="mq135">MQ135: </div>
+    <div class="data-item" id="pm10">PM10: </div>
+    <div class="data-item" id="pm25">PM2.5: </div>
 
-        <div class="data-tables">
-            <div class="live-data">
-                <h2>Live Data</h2>
-                <table id="live-data-table">
-                    <thead>
-                        <tr>
-                            <th>Metric</th>
-                            <th>Value</th>
-                        </tr>
-                    </thead>
-                    <tbody>
-                        <tr><td>AQI</td><td id="aqi-value">0</td></tr>
-                        <tr><td>Temperature</td><td id="temp-value">0°C</td></tr>
-                        <tr><td>Humidity</td><td id="humidity-value">0%</td></tr>
-                        <tr><td>PM 2.5</td><td id="pm25-value">0 µg/m³</td></tr>
-                        <tr><td>PM 5</td><td id="pm5-value">0 µg/m³</td></tr>
-                        <tr><td>Heat Index</td><td id="heat-index-value">0°C</td></tr>
-                    </tbody>
-                </table>
-            </div>
-
-            <div class="historical-data">
-                <h2>Historical Data (Last 30 Readings)</h2>
-                <table id="historical-data-table">
-                    <thead>
-                        <tr>
-                            <th>Timestamp</th>
-                            <th>AQI</th>
-                            <th>Temp</th>
-                            <th>Humidity</th>
-                            <th>PM 2.5</th>
-                            <th>PM 5</th>
-                            <th>Heat Index</th>
-                        </tr>
-                    </thead>
-                    <tbody id="historical-data-body"></tbody>
-                </table>
-                <button id="download-pdf">Download PDF</button>
-            </div>
-        </div>
-    </div>
-    <script src="https://cdnjs.cloudflare.com/ajax/libs/jspdf/2.5.1/jspdf.umd.min.js"></script>
-    <script src="https://cdnjs.cloudflare.com/ajax/libs/jspdf-autotable/3.5.29/jspdf.plugin.autotable.min.js"></script>
-    <script src="script.js"></script>
+    <h2>Last 30 Data Points</h2>
+    <table>
+        <thead>
+            <tr>
+                <th>Timestamp</th>
+                <th>Air Condition</th>
+                <th>Air Quality</th>
+                <th>Heat Index Condition</th>
+                <th>Humidity</th>
+                <th>Temperature</th>
+                <th>MQ135</th>
+                <th>PM10</th>
+                <th>PM2.5</th>
+            </tr>
+        </thead>
+        <tbody id="dataTable"></tbody>
+    </table>
 </body>
 </html>
