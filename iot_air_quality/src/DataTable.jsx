@@ -2,7 +2,7 @@ import React from "react";
 
 const DataTable = ({
   dataPoints,
-  setDataPoints, // Add this function prop to update the parent state
+  setDataPoints, 
   filterText,
   setFilterText,
   sortedField,
